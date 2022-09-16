@@ -8,5 +8,6 @@ aws:
   - BUCKET: XXXXXXXXXX
 
 monitor-api-key: XXXXXXXXXXXXXXXXXXXXXXXXXXXX
+monitor-client: XXXXXXXXXX
 
 server-historiador: XXXXXXXXXX

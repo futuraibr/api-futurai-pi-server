@@ -10,6 +10,13 @@ from time import sleep
 cwd = os.getcwd()
 
 def get_credentials_and_bucket_name():
+    """ 
+    Params: none
+    Returns: 
+        - access_key: string
+        - secret_key: string
+        - bucket_name: string"""
+    
     with open(cwd+"/config/aws.yaml") as file:
         documents = yaml.full_load(file)
         documents = documents["aws"]
@@ -22,33 +29,43 @@ def get_credentials_and_bucket_name():
     return access_key,secret_key,bucket_name
         
 def upload_to_aws(local_file, process_name_futurai,monitor):
-
+    """ 
+    Uploading file to client bucket
+    Params:
+        - local_file: string
+        - process_name_futurai: string
+        - monitor: string
+    Returns: 
+        - True: upload successfully
+        - False: error"""
+    
     object_name = os.path.basename(local_file)
 
     s3_file = "raw-data/"+process_name_futurai+"/"+ object_name
 
+    # set s3 client
     s3 = boto3.client(
         "s3", aws_access_key_id=ACCESS_KEY, aws_secret_access_key=SECRET_KEY
     )
 
+    # try send file
     try:
         s3.upload_file(local_file, BUCKET_NAME, s3_file)
-        print("Upload Successful: "+local_file )
         monitor.ping(state='ok',message=("Arquivo csv enviado: "+object_name))
         return True
     except FileNotFoundError:
-        monitor.ping(state='ok',message=("Arquivo csv não foi enviado: "+object_name))
-        print("The file was not found")
+        monitor.ping(state='ok',message=("Arquivo não encontrado para envio: "+object_name))
         return False
     except NoCredentialsError:
-        print("Credentials not available")
-        monitor.ping(state='ok',message=("Arquivo csv não foi enviado: "+object_name))
+        monitor.ping(state='ok',message=("Error ao acessar o bucket: "+object_name))
         return False
 
 def get_list_process():
     """ Get the list of process in yaml configuration file
     Params: none
-    Retunrs: List of process""" 
+    Retunrs: 
+         - process: List of process
+         - documents: List with process name futurai""" 
 
     with open(cwd+"/config/aws.yaml") as file:
         documents = yaml.full_load(file)
@@ -59,6 +76,13 @@ def get_list_process():
     return process,documents
 
 def get_filenames(process,cwd):
+    """ Get the list of filenames to upload
+    Params: 
+        - process: strings
+        - cwd: string
+    Retunrs: 
+        - List with filenames sorted by process""" 
+    
     filenames_by_process = []
     
     f = []
@@ -72,37 +96,43 @@ def get_filenames(process,cwd):
 
     return sorted(filenames_by_process)
 
-# main
 ACCESS_KEY,SECRET_KEY,BUCKET_NAME = get_credentials_and_bucket_name()
+
 def integration(monitor):
 
     list_process,documents = get_list_process()
 
+    # loop by process
     for process in list_process:
+        
         try:
+            
+            # get file accordingly with process name
             filenames_by_process = get_filenames(process,cwd)
-            print("**** Iniciando integração para o processo "+process)
+            
+            # loop by file
             for file in filenames_by_process:
+                
                 local_file = cwd+"/data/queue/"+file
-
                 process_name_futurai = documents[process]
-
+                
+                # send file to client bucket
                 uploaded = upload_to_aws(local_file,process_name_futurai,monitor)
 
+                # move file to successfully folder
                 if uploaded:
                     local_file_destionation = cwd+"/data/successfully/"+file
 
+                # move file to error folder
                 else:
                     local_file_destionation = cwd+"/data/error/"+file
 
                 os.rename(local_file,local_file_destionation)
-                sleep(5)
+             
         except Exception as e:
-            print("erro ao tentar fazer o upload do processo: "+process)
-            monitor.ping(state='fail',message=str(e))
-            raise
+            monitor.ping(state='fail',message=("erro ao tentar fazer o upload do processo: "+process+" error:"+ str(e)))
+            
 
-    print("finished")
 
         
 
