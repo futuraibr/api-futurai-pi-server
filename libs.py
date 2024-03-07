@@ -4,6 +4,7 @@ from datetime import datetime
 from collections import ChainMap
 import os
 import yaml
+import pandas as pd
 
 cwd = os.getcwd()
 
