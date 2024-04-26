@@ -5,8 +5,26 @@ from collections import ChainMap
 import os
 import yaml
 import pandas as pd
+import cronitor
 
 cwd = os.getcwd()
+
+
+class CronitorMonitor:
+    def __init__(self, api_key_monitor, monitor_client):
+        self.monitor = cronitor.Monitor(monitor_client, api_key=api_key_monitor)
+
+    def ping_start(self):
+        self.monitor.ping(state="run", message="Start")
+
+    def ping_finish(self):
+        self.monitor.ping(state="complete", message="Finish")
+
+    def ping_process(self, process):
+        self.monitor.ping(state="ok", message=process)
+
+    def ping_error(self, error):
+        self.monitor.ping(state="fail", message=error)
 
 
 def init_variables():
@@ -18,8 +36,17 @@ def init_variables():
         futurai_api_key = documents["FUTURAI-API-KEY"]
         futurai_url_api = documents["FUTURAI-URL-API"]
         futurai_company_id = documents["FUTURAI-COMPANY-ID"]
+        monitor_client = documents["MONITOR-CLIENT"]
+        monitor_api_key = documents["MONITOR-API-KEY"]
 
-    return futurai_api_key, futurai_url_api, futurai_company_id, server_name
+    return (
+        futurai_api_key,
+        futurai_url_api,
+        futurai_company_id,
+        server_name,
+        monitor_client,
+        monitor_api_key,
+    )
 
 
 def get_periods(url, company_id, process_id, futurai_api_key):
@@ -35,7 +62,7 @@ def get_periods(url, company_id, process_id, futurai_api_key):
         return data
     else:
         print("Falha na chamada à API:", response.status_code)
-        return None
+        raise
 
 
 def get_list_process():
@@ -120,3 +147,13 @@ def send_data(url, company_id, process_id, file_name, futurai_api_key, data_json
     else:
         print("Ocorreu um erro ao enviar a solicitação:", response.text)
         return None
+
+
+def get_date():
+    with open(cwd + "/config/historico.yaml") as file:
+        documents = yaml.full_load(file)
+
+    data_ini = documents["START-DATE"]
+    data_fin = documents["END-DATE"]
+
+    return data_ini, data_fin
