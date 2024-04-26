@@ -62,7 +62,7 @@ def get_periods(url, company_id, process_id, futurai_api_key):
         return data
     else:
         print("Falha na chamada à API:", response.status_code)
-        return None
+        raise
 
 
 def get_list_process():
