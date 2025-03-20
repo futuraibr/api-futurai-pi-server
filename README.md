@@ -1,11 +1,8 @@
 # **API de Integração - Futurai & PI Server**
 
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=futuraibr_api-futurai-pi-server&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=futuraibr_api-futurai-pi-server)
-
-[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=futuraibr_api-futurai-pi-server&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=futuraibr_api-futurai-pi-server)
-
-[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=futuraibr_api-futurai-pi-server&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=futuraibr_api-futurai-pi-server)
-
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=futuraibr_api-futurai-pi-server&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=futuraibr_api-futurai-pi-server)  
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=futuraibr_api-futurai-pi-server&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=futuraibr_api-futurai-pi-server)  
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=futuraibr_api-futurai-pi-server&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=futuraibr_api-futurai-pi-server)  
 [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=futuraibr_api-futurai-pi-server&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=futuraibr_api-futurai-pi-server)
 
 ## 📌 **Descrição**
@@ -94,12 +91,9 @@ Caso esteja utilizando um **agendador de tarefas**, assegure-se de que o script 
 
 Esta API passa por verificações automatizadas de qualidade de código via **SonarCloud**:
 
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=futuraibr_api-futurai-pi-server&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=futuraibr_api-futurai-pi-server)
-
-[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=futuraibr_api-futurai-pi-server&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=futuraibr_api-futurai-pi-server)
-
-[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=futuraibr_api-futurai-pi-server&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=futuraibr_api-futurai-pi-server)
-
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=futuraibr_api-futurai-pi-server&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=futuraibr_api-futurai-pi-server)  
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=futuraibr_api-futurai-pi-server&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=futuraibr_api-futurai-pi-server)  
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=futuraibr_api-futurai-pi-server&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=futuraibr_api-futurai-pi-server)  
 [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=futuraibr_api-futurai-pi-server&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=futuraibr_api-futurai-pi-server)
 
 ---
