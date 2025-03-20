@@ -1,2 +1,2 @@
-cd C:\futurai\app #Colocar caminha conforme instalação no cliente
+cd C:\futurai\app #Colocar caminho conforme instalação no cliente
 python app.py
