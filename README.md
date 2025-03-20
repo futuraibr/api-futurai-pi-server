@@ -73,6 +73,15 @@ python app.py
 
 Caso esteja utilizando um **agendador de tarefas**, assegure-se de que o script `app.sh` está configurado corretamente.
 
+### **Windows (Agendador de Tarefas):**
+
+1. Abra o **Agendador de Tarefas** do Windows.
+2. Clique em **Criar Tarefa...**.
+3. Na guia **Geral**, defina um nome para a tarefa.
+4. Na guia **Disparadores**, configure a frequência de execução.
+5. Na guia **Ações**, selecione **Iniciar um programa** e insira o caminho para `app.sh`.
+6. Salve e ative a tarefa.
+
 ---
 
 ## 📊 **Monitoramento e Qualidade do Código**
