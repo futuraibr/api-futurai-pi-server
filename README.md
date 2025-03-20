@@ -17,3 +17,7 @@ Para implantar o projeto, o ambiente deve ser preparado usando o arquivo `requir
 
 ```bash
 pip install -r requirements.txt
+
+
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=futuraibr_api-futurai-pi-server&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=futuraibr_api-futurai-pi-server)
+```
